@@ -1,6 +1,6 @@
 # `pm-ai`
 
-Framework to manage product-management specifications - _spec_ as in spec-driven developments.
+Framework to manage product-management specifications - _spec_ as in spec-driven development.
 
 This repository is aimed to be installed as user-level agent-skills, and be compatible with Claude Code and Codex.
 
