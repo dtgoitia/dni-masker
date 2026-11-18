@@ -20,7 +20,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Shared helpers live in the repo's top-level scripts/ directory.
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "scripts"))
 from pm_items import Item, load_items, parse_frontmatter, set_field  # noqa: E402
 from sync_ready_status import BLOCKED, CLOSED, READY, blockers_of  # noqa: E402
 

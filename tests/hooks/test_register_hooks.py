@@ -5,9 +5,7 @@ the same `hooks` schema. Only entries running pm_lint_hook.py are touched.
 """
 
 import json
-import os
 import shlex
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -125,39 +123,3 @@ def test_invalid_json_is_left_untouched(tmp_path):
     assert "not valid JSON" in result.stderr
     assert settings.read_text() == "{ not json"
 
-
-# --- install.sh ------------------------------------------------------------------------------
-
-
-def run_install(tmp_path: Path, *args: str) -> subprocess.CompletedProcess[str]:
-    env = {
-        **os.environ,
-        "CLAUDE_SKILLS_DIR": str(tmp_path / "claude-skills"),
-        "CODEX_SKILLS_DIR": str(tmp_path / "codex-skills"),
-        "CLAUDE_SETTINGS": str(tmp_path / "claude" / "settings.json"),
-        "CODEX_HOOKS": str(tmp_path / "codex" / "hooks.json"),
-        "PYTHON": sys.executable,
-    }
-    # Run through bash: the Nix sandbox has no /usr/bin/env for the shebang.
-    bash = shutil.which("bash") or "/bin/bash"
-    return subprocess.run([bash, str(REPO / "install.sh"), *args], capture_output=True, text=True, check=False,
-                          env=env)
-
-
-def test_install_sh_registers_and_unregisters_the_hook(tmp_path):
-    claude = tmp_path / "claude" / "settings.json"
-    codex = tmp_path / "codex" / "hooks.json"
-
-    installed = run_install(tmp_path)
-
-    assert installed.returncode == 0, installed.stderr
-    assert json.loads(claude.read_text())["hooks"] == OURS
-    assert json.loads(codex.read_text())["hooks"] == OURS
-    assert (tmp_path / "claude-skills" / "pm-lint").is_symlink()
-
-    uninstalled = run_install(tmp_path, "--uninstall")
-
-    assert uninstalled.returncode == 0, uninstalled.stderr
-    assert json.loads(claude.read_text()) == {}
-    assert json.loads(codex.read_text()) == {}
-    assert not (tmp_path / "claude-skills" / "pm-lint").exists()

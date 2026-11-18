@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-SCRIPTS_DIR = Path(__file__).resolve().parents[2] / "skills" / "pm-lint" / "scripts"
+SCRIPTS_DIR = Path(__file__).resolve().parents[2] / ".claude" / "skills" / "pm-lint" / "scripts"
 
 # Allow importing the skill's helper modules (`_items`, `check_relations`) directly.
 sys.path.insert(0, str(SCRIPTS_DIR))

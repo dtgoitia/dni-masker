@@ -2,7 +2,6 @@
 name = "pm-ai"
 version = "0.1.0"
 description = "Product-management agent skills for a solo developer"
-readme = "README.md"
 authors = [
     { name = "David Torralba Goitia", email = "david.torralba.goitia@gmail.com" }
 ]
@@ -17,5 +16,5 @@ dev = [
 ]
 
 [tool.uv]
-# Not an installable package: the skills' scripts run straight from skills/ and scripts/.
+# Not an installable package: the skills' scripts run straight from .claude/skills/ and scripts/.
 package = false

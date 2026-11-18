@@ -16,7 +16,7 @@ import argparse
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "scripts"))
 from pm_items import load_decisions, load_items  # noqa: E402
 
 

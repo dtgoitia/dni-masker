@@ -29,7 +29,7 @@ import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-LINT_SCRIPTS = REPO / "skills" / "pm-lint" / "scripts"
+LINT_SCRIPTS = REPO / ".claude" / "skills" / "pm-lint" / "scripts"
 SHARED_SCRIPTS = REPO / "scripts"
 STATE_MAX_AGE = 7 * 24 * 3600  # snapshots older than this are cleaned up
 

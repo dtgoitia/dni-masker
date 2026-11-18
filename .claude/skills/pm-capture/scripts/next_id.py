@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 # Shared helpers live in the repo's top-level scripts/ directory.
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "scripts"))
 from pm_common import slugify  # noqa: E402
 
 PREFIXES = {"feature": "F", "technical": "T", "question": "Q"}
